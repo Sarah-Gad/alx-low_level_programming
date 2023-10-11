@@ -33,7 +33,7 @@ void print_times_table(int n)
 					_putchar((num3 / 100) + 48);
 					_putchar((num3 / 10) + 48);
 				}
-				elsr if (num3 <= 99 && num3 >= 10)
+				else if (num3 <= 99 && num3 >= 10)
 					_putchar((num3 / 10) + 48);
 				_putchar((num3 % 10) + 48);
 			}
