@@ -20,3 +20,4 @@ void print_alphabet_x10(void)
 		_putchar('\n');
 		alpha1 = alpha1 + 1;
 	}
+}
