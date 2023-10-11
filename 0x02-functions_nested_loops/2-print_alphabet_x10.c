@@ -18,6 +18,6 @@ void print_alphabet_x10(void)
 			alpha2 = alpha2 + 1;
 		}
 		alpha1 = alpha1 + 1;
+		_putchar('\n');
 	}
-	_putchar('\n');
 }
