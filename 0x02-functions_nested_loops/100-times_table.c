@@ -14,7 +14,7 @@ void print_times_table(int n)
 
 	if (n <= 15 && n >= 0)
 	{
-		for (num1 = 0; num1 <= n; num1++)
+		for (num3 = 0; num3 <= n; num3++)
 		{
 			_putchar(48);
 			for (num2 = 1; num2 <= n; num2++)
@@ -22,20 +22,21 @@ void print_times_table(int n)
 				_putchar(',');
 				_putchar(' ');
 
-				num3 = num1 * num2;
+				num1 = num3 * num2;
 
-				if (num3 <= 9)
+				if (num1 <= 9)
 					_putchar(' ');
-				if (num3 <= 99)
+				if (num1 <= 99)
 					_putchar(' ');
-				if (num3 >= 100)
+
+				if (num1 >= 100)
 				{
-					_putchar((num3 / 100) + 48);
-					_putchar((num3 / 10) + 48);
+					_putchar((num1 / 100) + 48);
+					_putchar((num1 / 10) % 10 + 48);
 				}
-				else if (num3 <= 99 && num3 >= 10)
-					_putchar((num3 / 10) + 48);
-				_putchar((num3 % 10) + 48);
+				else if (num1 <= 99 && num1 >= 10)
+					_putchar((num1 / 10) + 48);
+				_putchar((num1 % 10) + 48);
 			}
 			_putchar('\n');
 		}
