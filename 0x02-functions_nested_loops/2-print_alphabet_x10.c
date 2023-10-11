@@ -9,7 +9,7 @@ void print_alphabet_x10(void)
 	int alpha2;
 
 	alpha1 = 0;
-	while (alpha1 < 11)
+	while (alpha1 < 10)
 	{
 		alpha2 = 'a';
 		while (alpha2 <= 'z')
@@ -17,7 +17,7 @@ void print_alphabet_x10(void)
 			_putchar(alpha2);
 			alpha2 = alpha2 + 1;
 		}
-		_putchar('\n');
 		alpha1 = alpha1 + 1;
 	}
+	_putchar('\n');
 }
