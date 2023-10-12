@@ -5,5 +5,6 @@
 
 int _isupper(int chr);
 int _isdigit(int dig);
+int mul(int f_num, int s_num);
 
 #endif
