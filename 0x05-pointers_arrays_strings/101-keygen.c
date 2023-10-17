@@ -15,7 +15,7 @@ int main(void)
 	int sum;
 	char c;
 
-	strand(time)NULL));
+	strand(time(NULL));
 
 	while (sum <= 2645)
 	{
