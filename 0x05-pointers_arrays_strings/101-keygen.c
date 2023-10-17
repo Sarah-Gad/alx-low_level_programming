@@ -7,10 +7,11 @@
  * random valid passwords for the
  * program 101-crackme.
  *
- * Return: 0 (success)
+ * Return: zero
 */
 
 int main(void)
+{
 
 	int sum;
 	char c;
