@@ -1,73 +1,56 @@
 #include "main.h"
-int str_r(char *s);
-int hlp(char *strt, char *end);
-
 /**
- * is_hlpndrome - a function that returns 1
- * if a string is a hlpndrome and 0 if not.
+ * last - get the last index.
  *
- * @s: '*s' is a pointer
+ * @s: pointer to the string
  *
- * Return: Always 0.
+ * Return: int
 */
 
-int is_hlpndrome(char *s)
+int is_palindrome(char *s);
+int check(char *s, int start, int end, int mod);
+int last(char *s)
 {
-	int length;
+	int n = 0;
 
-	char *end = s;
-	int i;
-
-	length = str_r(s);
-	i = hlp(s, end + (length - 1));
-	return (i);
+	if (*s > '\0')
+		n += last(s + 1) + 1;
+	return (n);
 }
 
 /**
- * hlp - a helper func
+ * is_palindrome -  a function that
+ * returns 1 if a string is a
+ * palindrome and 0 if not.
  *
- * @strt: '*strt' is a pointer
- * @end: '*end' is a pointer
+ * @s: the string
  *
- * Return: Always 0.
+ * Return: zero or one.
 */
 
-int hlp(char *strt, char *end)
+int is_palindrome(char *s)
 {
-	int i;
+	int end = last(s);
 
-	if (strt >= end)
+	return (check(s, 0, end - 1, end % 2));
+}
+
+/**
+ * check - the checker
+ *
+ * @s: the string
+ * @start: moves form right to left
+ * @end: moved from left to right
+ *
+ * Return: zero or one
+*/
+
+int check(char *s, int start, int end, int mod)
+{
+	if ((start == end && mod != 0) || (start == end + 1 && mod == 0))
 		return (1);
-	if (*strt != *end)
+	else if (s[start] != s[end])
 		return (0);
-	if
-	{
-		i = hlp(strt + 1, end - 1);
-		return (i);
-	}
-}
-
-/**
- * str_r - another helper func
- *
- * @s: '*s' is a pointer
- *
- * Return: Always 0.
-*/
-
-int str_r(char *s)
-{
-	int i;
-
-	if (*s != '\0')
-	{
-		i = str_r(s + 1);
-		i++;
-		return (i);
-	}
 	else
-	{
-		i = 0;
-		return (i);
-	}
+		return (check(s, start + 1, end - 1, mod));
 }
