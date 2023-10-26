@@ -41,6 +41,7 @@ int is_palindrome(char *s)
  * @s: the string
  * @start: moves form right to left
  * @end: moved from left to right
+ * @mod: int
  *
  * Return: zero or one
 */
