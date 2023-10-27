@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
 	for (indx = 1; indx < argc; indx++)
 	{
-		if (argc == 1)
+		if (argc < 2)
 		{
 			printf("0\n");
 		}
