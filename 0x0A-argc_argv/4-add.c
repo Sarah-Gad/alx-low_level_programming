@@ -12,26 +12,17 @@
  * 1 if the numbers passed to the program
  * contains symbols.
 */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int indx;
 	int sum = 0;
+	char *c;
 
-	for (indx = 1; indx < argc; indx++)
+	while (--argc)
 	{
-		if (argc < 2)
-		{
-			printf("0\n");
-		}
-		else if (*argv[indx] < '0' || *argv[indx] > '9')
-		{
-			printf("Error\n");
-			return (1);
-		}
-		else
-		{
-			sum += atoi(argv[indx]);
-		}
+		for (c = argv[argc]; *c; c++)
+			if (*c < '0' || *c > '9')
+				return (printf("Error\n"), 1);
+		sum += atoi(argv[argc]);
 	}
 	printf("%d\n", sum);
 	return (0);
