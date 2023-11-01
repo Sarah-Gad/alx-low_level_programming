@@ -29,7 +29,7 @@ int wrdcnt(char *s)
  * Return: pointer to the array.
 */
 
-char **strtow(char *str);
+char **strtow(char *str)
 {
 	int i, j, k, l, n = 0, wc = 0;
 	char **w;
