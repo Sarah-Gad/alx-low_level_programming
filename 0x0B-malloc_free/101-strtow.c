@@ -1,127 +1,74 @@
 #include "main.h"
-#include <stdlib.h>
-
 /**
- * letters_count - fucntion that is mintioned in another code
+ * wrdcnt - counts the num of words.
+ * @s: string to count
  *
- * Description: function to do task for alx
- *
- * @str: '*s' is a pointer
- * @size: 'size' is the size of the string
- *
- * Return: Always 0.
+ * Return: int of num of words.
 */
-
-int letters_count(char *str, int size)
+int wrdcnt(char *s)
 {
-	int i;
-	int sw = 0, j;
+	int i, n = 0;
 
-	for (i = 0; i < size; i++)
+	for (i = 0; s[i]; i++)
 	{
-		if (str[i] != ' ')
+		if (s[i] == ' ')
 		{
-			j = i + 1;
-			while (str[j] != ' ' && str[j] != '\0')
-			{
-				j++;
-			}
-			sw++;
-			i = j - 1;
+			if (s[i + 1] != ' ' && s[i + 1] != '\0')
+				n++;
 		}
+		else if (i == 0)
+			n++;
 	}
-	return (sw);
+	n++;
+	return (n);
 }
-
 /**
- * word_count - fucntion that is mintioned in another code
+ * strtow - a function that splits a string into words.
+ * @str: string to split
  *
- * Description: function to do task for alx
- *
- * @str: '*s' is a pointer
- * @size: 'size' is the size of the string
- *
- * Return: Always 0.
+ * Return: pointer to the array.
 */
 
-int word_count(char *str, int size)
+char **strtow(char *str);
 {
-	int i, words = 0;
+	int i, j, k, l, n = 0, wc = 0;
+	char **w;
 
-	for (i = 0; i < size; i++)
-	{
-		if (str[i] == ' ' && str[i + 1] != ' ' && (i + 1) < size)
-			words++;
-	}
-	return (words);
-}
-
-/**
- * _strlen - fucntion that is mintioned in another code
- *
- * Description: function to do task for alx
- *
- * @s: '*s' is a pointer
- *
- * Return: Always 0.
-*/
-
-int _strlen(char *s)
-{
-	int len = 0;
-	while (s[len] != 0)
-		len++;
-	return (len);
-}
-
-/**
- * strtow - function is called ny another file called main.c
- *
- * Description: for alx project malloc
- *
- * @str: '*s1' is a pointer recieved from another function
- *
- * Return: 0 on success
-*/
-
-char **strtow(char *str)
-{
-	int size, i, j, x, y, letters;
-	int flag = 0;
-	char **ptr;
-	if (str == NULL || *str == '\0' || (*str == ' ' && str[1] == '\0'))
+	if (str == NULL || *str == '\0')
 		return (NULL);
-	while (*str != '\0' && *str == ' ')
-		str++;
-	size = _strlen(str);
-	letters = letters_count(str, size) + 1;
-	ptr = (char **)malloc(letters *sizeof(char *));
-	if (ptr == NULL)
+	n = wrdcnt(str);
+	if (n == 1)
 		return (NULL);
-	ptr[letters - 1] = NULL;
+	w = (char **)malloc(n * sizeof(char *));
+	if (w == NULL)
+		return (NULL);
+	w[n - 1] = NULL;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		if (str[i] != ' ')
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
 		{
-			for (j = 0; str[i + j] != ' ' && str[i + j] != '\0'; j++)
+			for (j = 1; str[i + j] != ' ' && str[i + j]; j++)
 				;
-			ptr[flag] = (char *)malloc((j + 1) * sizeof(char));
-			if (ptr[flag] == NULL)
+			j++;
+			w[wc] = (char *)malloc(j * sizeof(char));
+			j--;
+			if (w[wc] == NULL)
 			{
-				for (x = 0; x < flag; x++)
-					free(ptr[x]);
-				free(ptr);
+				for (k = 0; k < wc; k++)
+					free(w[k]);
+				free(w[n - 1]);
+				free(w);
 				return (NULL);
 			}
-			for (y = 0; y < j; y++)
-				ptr[flag][y] = str[i + y];
-			ptr[flag][y] = '\0';
-			flag++;
+			for (l = 0; l < j; l++)
+				w[wc][l] = str[i + l];
+			w[wc][l] = '\0';
+			wc++;
 			i += j;
 		}
 		else
 			i++;
 	}
-	return (ptr);
+	return (w);
 }
