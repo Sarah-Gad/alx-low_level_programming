@@ -1,60 +1,77 @@
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "main.h"
 /**
- * _isdigit - checks if a character is a digit
- *
- * @c: character to be checked
- *
- * Return: 1 if c is a digit, 0 otherwise
+ * _puts - prints a string.
+ * @str: pointer to the string
+ * Return: void.
 */
-int _isdigit(int c)
+void _puts(char *str)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	int i = 0;
+
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
 }
-
 /**
- * main - multiplies two positive numbers
- *
- * @argc: number of command-line arguments
- * @argv: array of command-line argument strings
- *
- * Return: 0 on success
+ * _atoi - convert a string to an int.
+ * @s: char type string.
+ * Return: interger.
 */
-int main(int argc, char *argv[])
+int _atoi(const char *s)
 {
-	int num1, num2, i;
+	int sign = 1;
+	unsigned long int resp = 0, firstnum, i;
+
+	for (firstnum = 0; !(s[firstnum] >= 48 && s[firstnum] <= 57); firstnum++)
+	{
+		if (s[firstnum] == '-')
+		{
+			sign *= -1;
+		}
+	}
+	for (i = firstnum; s[i] >= 48 && s[i] <= 57; i++)
+	{
+		resp *= 10;
+		resp += (s[i] - 48);
+	}
+	return (sign * resp);
+}
+/**
+ * print_int - prints the int.
+ * @n: int
+ * Return: 0
+*/
+void print_int(unsigned long int n)
+{
+	unsigned long int div = 1, i, resp;
+
+	for (i = 0; n / div > 9; i++, div *= 10)
+		;
+	for (; div >= 1; n %= div, div /= 10)
+	{
+		resp = n / div;
+		_putchar('0' + resp);
+	}
+}
+/**
+ * main - print the result
+ * @argc: int
+ * @argv; list
+ * Return: 0
+*/
+int main(int argc, char const *argv[])
+{
+	(void)argc;
 
 	if (argc != 3)
 	{
-		printf("Error\n");
-		return (98);
+		_puts("Error ");
+		exit(98);
 	}
-
-	for (i = 0; argv[1][i] != '\0'; i++)
-	{
-		if (!_isdigit(argv[1][i]))
-		{
-			printf("Error\n");
-			return (98);
-		}
-	}
-
-	for (i = 0; argv[2][i] != '\0'; i++)
-	{
-		if (!_isdigit(argv[2][i]))
-		{
-			printf("Error\n");
-			return (98);
-		}
-	}
-
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[2]);
-
-	printf("%d\n", num1 * num2);
+	print_int(_atoi(argv[1]) * _atoi(argv[2]));
+	_putchar('\n');
 
 	return (0);
 }
