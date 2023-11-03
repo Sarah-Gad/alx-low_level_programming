@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
+/**
  * _isdigit - checks if a character is a digit
  *
  * @c: character to be checked
@@ -15,7 +15,7 @@ int _isdigit(int c)
 	return (0);
 }
 
-/*
+/**
  * main - multiplies two positive numbers
  *
  * @argc: number of command-line arguments
