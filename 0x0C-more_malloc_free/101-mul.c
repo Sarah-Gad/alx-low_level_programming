@@ -49,7 +49,8 @@ void print_int(unsigned long int n)
 	unsigned long int div = 1, i, resp;
 
 	for (i = 0; n / div > 9; i++, div *= 10)
-		;
+	;
+
 	for (; div >= 1; n %= div, div /= 10)
 	{
 		resp = n / div;
@@ -59,7 +60,7 @@ void print_int(unsigned long int n)
 /**
  * main - print the result
  * @argc: int
- * @argv; list
+ * @argv: list
  * Return: 0
 */
 int main(int argc, char const *argv[])
