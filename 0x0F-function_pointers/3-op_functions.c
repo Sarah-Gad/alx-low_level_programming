@@ -1,5 +1,5 @@
 #include "3-calc.h"
-#include "function_pointers.h"
+
 /**
  * op_add - adds 2 nums
  * @a: the first num
@@ -8,10 +8,7 @@
 */
 int op_add(int a, int b)
 {
-	int sum;
-
-	sum = (a + b);
-	return (sum);
+	return (a + b);
 }
 /**
  *op_sub - returns the difference
