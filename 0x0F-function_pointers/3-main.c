@@ -1,49 +1,39 @@
 #include "3-calc.h"
-#include "function_pointers.h"
 /**
- * main - entry point of the prog
- * @argc: num of argumants passed to
- * the main
- * @argv: pointer to the arguments passed
- * to the main.
- * Return: 0
+ * main - check the code
+ * @argc: counter of arguments
+ * @argv: values of argumens
+ * Return: Always 0.
 */
 int main(int argc, char *argv[])
 {
-	int result;
-	int num1;
-	int num2;
+	int a, b;
+	char arr[2];
+	int (*func)(int, int);
 
-	int (*op_func)(int, int);
-
-	int (*get_op_func(char *s))(int, int);
-
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[3]);
-
-	op_func = get_op_func(argv[2]);
+	arr[0] = argv[2][0];
+	arr[1] = '\0';
 
 	if (argc != 4)
 	{
-		return (98);
-		printf("Error");
+		printf("Error\n");
+		exit(98);
+	}
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
+
+	if (strlen(argv[2]) == 3)
+	{
+		arr[0] = argv[2][1];
+		arr[1] = '\0';
 	}
 
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[3]);
-
-	op_func = get_op_func(argv[2]);
-	if (op_func == NULL)
+	func = get_op_func(arr);
+	if (func == NULL)
 	{
-		return (99);
-		printf("Error");
+		printf("Error\n");
+		exit(99);
 	}
-	if ((argv[2][0] == '/' || argv[2][0] == '%') && num2 == 0)
-	{
-		return (100);
-		printf("Error");
-	}
-	result = op_func(num1, num2);
-	printf("%d\n", result);
+	printf("%d\n", func(a, b));
 	return (0);
 }
