@@ -11,7 +11,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 	listint_t *tg_ptr;
 	unsigned int tracking;
 
-	if (head == NULL)
+	if (head == NULL || index == NULL)
 		return (NULL);
 	tracking = 0;
 	tg_ptr = head;
