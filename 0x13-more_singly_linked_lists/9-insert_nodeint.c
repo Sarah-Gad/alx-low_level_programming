@@ -44,4 +44,6 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		nw_nd->next = end;
 	}
 	return (nw_nd);
+	else
+		return (NULL);
 }
