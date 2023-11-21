@@ -19,7 +19,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	nw_nd->n = n;
 	start = *head;
 	end = *head;
-	while (tracking < idx)
+	while (tracking < idx - 1)
 	{
 		start = start->next;
 		if (start == NULL)
