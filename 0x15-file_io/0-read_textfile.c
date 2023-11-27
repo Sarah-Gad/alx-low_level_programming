@@ -12,38 +12,35 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	FILE *f_ptr;
 	char *buff;
 
-	if (filename != NULL)
-	{
-		buff = malloc(sizeof(char) * letters);
-		if (buff == NULL)
-		{
-			return (0);
-		}
-		f_ptr = fopen(filename, "r");
-		if (f_ptr == NULL)
-		{
-			free(buff);
-			return (0);
-		}
-		rd_num = fread(buff, sizeof(char), letters, f_ptr);
-		if (rd_num == -1)
-		{
-			free(buff);
-			fclose(f_ptr);
-			return (0);
-		}
-		tot_num = write(1, buff, rd_num);
-		if (tot_num != rd_num || tot_num < 0)
-		{
-			free(buff);
-			fclose(f_ptr);
-			return (0);
-		}
-		fclose(f_ptr);
-		free(buff);
-		return (tot_num);
-	}
-	else
+	if (filename == NULL)
 		return (0);
-}
 
+	buff = malloc(sizeof(char) * letters);
+	if (buff == NULL)
+	{
+		return (0);
+	}
+	f_ptr = fopen(filename, "r");
+	if (f_ptr == NULL)
+	{
+		free(buff);
+		return (0);
+	}
+	rd_num = fread(buff, sizeof(char), letters, f_ptr);
+	if (rd_num == -1)
+	{
+		free(buff);
+		fclose(f_ptr);
+		return (0);
+	}
+	tot_num = write(1, buff, rd_num);
+	if (tot_num != rd_num || tot_num < 0)
+	{
+		free(buff);
+		fclose(f_ptr);
+		return (0);
+	}
+	fclose(f_ptr);
+	free(buff);
+	return (tot_num);
+}
