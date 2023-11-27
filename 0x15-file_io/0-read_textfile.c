@@ -28,7 +28,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		rd_num = fread(buff, sizeof(char), letters, f_ptr);
 		buff[rd_num] = '\0';
 		tot_num = write(1, buff, rd_num);
-		if (tot_num != rd_num)
+		if (tot_num != rd_num || tot_num == -1)
 		{
 			free(buff);
 			fclose(f_ptr);
