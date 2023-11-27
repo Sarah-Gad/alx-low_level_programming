@@ -11,7 +11,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	size_t tot_num, rd_num;
 	FILE *f_ptr;
 	char *buff;
-	
+
 	if (filename != NULL)
 	{
 		buff = malloc(sizeof(char) * (letters + 1));
@@ -28,6 +28,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		rd_num = fread(buff, sizeof(char), letters, f_ptr);
 		buff[rd_num] = '\0';
 		tot_num = write(1, buff, rd_num);
+		if (tot_num != rd_num)
+		{
+			free(buff);
+			fclose(f_ptr);
+			return (0);
+		}
 		fclose(f_ptr);
 		free(buff);
 		return (tot_num);
