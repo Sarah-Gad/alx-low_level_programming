@@ -11,7 +11,7 @@
  * @name: name of the file
  * @fd: file descriptor
 */
-typedef struct
+typedef struct file
 {
 	char *name;
 	int fd;
