@@ -6,7 +6,7 @@
  *
  * @size: the size of it
  *
- * Returns: a hash table or NULL
+ * Return: a hash table or NULL
  */
 hash_table_t *hash_table_create(unsigned long int size)
 {
