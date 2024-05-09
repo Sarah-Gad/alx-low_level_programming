@@ -1,70 +1,50 @@
-#include "search_algos.h"
-#include <stdio.h>
-#include <math.h>
-
-/**
- * node_at_index - returns the node at an index in a list
- *
- * @list: a linked list
- * @index: the index at which to get the node
- *
- * Return: A pointer to the node at @index in @list
+/*
+ * File: 105-jump_list.c
+ * Auth: Brennan D Baraban
  */
-listint_t *node_at_index(listint_t *list, size_t index)
-{
-	listint_t *head = list;
 
-	while (head)
-	{
-		if (head->index == index)
-			return (head);
-		head = head->next;
-	}
-	return (NULL);
-}
+#include "search_algos.h"
 
 /**
- * jump_list - searches for a node in a sorted list of integers using
- * the jump search algorithm.
+ * jump_list - Searches for an algorithm in a sorted singly
+ *             linked list of integers using jump search.
+ * @list: A pointer to the  head of the linked list to search.
+ * @size: The number of nodes in the list.
+ * @value: The value to search for.
  *
- * @list: a linked list of integers
- * @size: the size of the list
- * @value: the value to search for
+ * Return: If the value is not present or the head of the list is NULL, NULL.
+ *         Otherwise, a pointer to the first node where the value is located.
  *
- * Return: a pointer to the node where @value is located or NULL if not found
+ * Description: Prints a value every time it is compared in the list.
+ *              Uses the square root of the list size as the jump step.
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t blcksize = sqrt(size), low = 0, high = 0;
-	listint_t *target;
+	size_t step, step_size;
+	listint_t *node, *jump;
 
-	if (!list || !size)
+	if (list == NULL || size == 0)
 		return (NULL);
 
-	high = blcksize;
-	target = node_at_index(list, high);
-
-	while (high < size && target->n < value)
+	step = 0;
+	step_size = sqrt(size);
+	for (node = jump = list; jump->index + 1 < size && jump->n < value;)
 	{
-		printf("Value checked array[%lu] = [%i]\n", high, target->n);
-		low = high;
-		high += blcksize;
-		target = node_at_index(list, high);
+		node = jump;
+		for (step += step_size; jump->index < step; jump = jump->next)
+		{
+			if (jump->index + 1 == size)
+				break;
+		}
+		printf("Value checked at index [%ld] = [%d]\n", jump->index, jump->n);
 	}
 
-	high = MIN(high, size - 1);
-	target = node_at_index(list, high);
-	printf("Value checked array[%lu] = [%i]\n", high, target->n);
-	printf("Value found between indexes [%lu] and [%lu]\n", low, high);
-	target = node_at_index(list, low);
-	for (; low < high && target->n < value; low++)
-	{
-		printf("Value checked array[%lu] = [%i]\n", low, target->n);
-		target = node_at_index(list, low + 1);
-	}
-	printf("Value checked array[%lu] = [%i]\n", low, target->n);
+	printf("Value found between indexes [%ld] and [%ld]\n",
+			node->index, jump->index);
 
-	if (target->n == value)
-		return (target);
-	return (NULL);
+	for (; node->index < jump->index && node->n < value; node = node->next)
+		printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
+	printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
+
+	return (node->n == value ? node : NULL);
 }
