@@ -5,7 +5,7 @@
 /**
 * main - Entry point
 *
-* Return: Always EXIT_SUCCESS
+* Return: Always EXIT_SUCCESSs
 */
 int main(void)
 {
